@@ -6,31 +6,22 @@ head:
   - tag: title
     content: xaa
 hero: 
-  tagline: builds things	# tab characters must not be used in indentation
+  tagline: a some docs
   image:
     file: ../../assets/houston.webp
-  
+  actions:
+    - text: Example Guide
+      link: /guides/example/
+      icon: right-arrow
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import LinkNav from '#/components/LinkNav.astro';
 
-## Next steps
+## Builds things
 
-<CardGrid stagger>
-  <Card title="Update content" icon="pencil">
-    Edit `src/content/docs/index.mdx` to see this page change.
-  </Card>
-  <Card title="Change page layout" icon="document">
-    Delete `template: splash` in `src/content/docs/index.mdx` to display a
-    sidebar on this page.
-  </Card>
-  <Card title="Add new content" icon="add-document">
-    Add Markdown or MDX files to `src/content/docs` to create new pages.
-  </Card>
-  <Card title="Configure your site" icon="setting">
-    Edit your `sidebar` and other config in `astro.config.mjs`.
-  </Card>
-  <Card title="Read the docs" icon="open-book">
-    Learn more in [the Starlight Docs](https://starlight.astro.build/).
-  </Card>
-</CardGrid>
+<div class="grid grid-cols-[repeat(auto-fill,150px)] gap-6">
+  <LinkNav title="aa code" href="https://github.com/Nahida-aa/aacode" target="_blank" icon="external" />
+  <LinkNav title="aa chat" href="https://github.com/Nahida-aa/chat" target="_blank" icon="external" />
+  <LinkNav title="@xaa/icon" href="https://icon.nahida-aa.workers.dev" target="_blank" icon="external" />
+  <LinkNav title="react demo" href="https://start-react.nahida-aa.workers.dev" target="_blank" icon="external" />
+</div>
