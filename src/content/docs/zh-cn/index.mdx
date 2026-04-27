@@ -2,13 +2,33 @@
 title: xaa
 description: xaa (aka aa, xia-aa) is a youtuber/ceo/dev. built aa code, aa chat and more.
 template: splash
+head:
+  - tag: title
+    content: xaa
+
 hero:
   tagline: builds things
   actions:
-    - text: 示例指南
+    - text: aa code
+      link: https://github.com/Nahida-aa/aacode
+      icon: external
+      variant: minimal
+    - text: aa chat
+      link: https://github.com/Nahida-aa/chat
+      icon: external
+      variant: minimal
+    - text: "@xaa/icon"
+      link: https://github.com/Nahida-aa/icon
+      icon: external
+      variant: minimal
+    - text: 文档
       link: /zh-cn/guides/example/
-      icon: right-arrow
-
+      icon: right-caret
+      variant: minimal 
+    - text: react demo
+      link: https://github.com/Nahida-aa/icon
+      icon: external
+      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
@@ -16,19 +36,19 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## 下一步
 
 <CardGrid stagger>
-	<Card title="更新内容" icon="pencil">
-		编辑 `src/content/docs/zh-cn/index.mdx` 来查看此页面的变化。
-	</Card>
-	<Card title="更改页面布局" icon="document">
-		删除 `src/content/docs/zh-cn/index.mdx` 中的 `template: splash` 以在此页面显示侧边栏。
-	</Card>
-	<Card title="添加新内容" icon="add-document">
-		将 Markdown 或 MDX 文件添加到 `src/content/docs` 以创建新页面。
-	</Card>
-	<Card title="配置您的站点" icon="setting">
-		在 `astro.config.mjs` 中编辑 `sidebar` 和其他配置。
-	</Card>
-	<Card title="阅读文档" icon="open-book">
-		在 [Starlight 文档](https://starlight.astro.build/zh-cn/) 中了解更多。
-	</Card>
+  <Card title="更新内容" icon="pencil">
+    编辑 `src/content/docs/zh-cn/index.mdx` 来查看此页面的变化。
+  </Card>
+  <Card title="更改页面布局" icon="document">
+    删除 `src/content/docs/zh-cn/index.mdx` 中的 `template: splash` 以在此页面显示侧边栏。
+  </Card>
+  <Card title="添加新内容" icon="add-document">
+    将 Markdown 或 MDX 文件添加到 `src/content/docs` 以创建新页面。
+  </Card>
+  <Card title="配置您的站点" icon="setting">
+    在 `astro.config.mjs` 中编辑 `sidebar` 和其他配置。
+  </Card>
+  <Card title="阅读文档" icon="open-book">
+    在 [Starlight 文档](https://starlight.astro.build/zh-cn/) 中了解更多。
+  </Card>
 </CardGrid>

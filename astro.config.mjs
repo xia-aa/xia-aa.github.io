@@ -9,6 +9,9 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: "xaa",
+			components: {
+        Hero: './src/components/Hero.astro',
+      },
 			customCss: [
 				// Path to your Tailwind base styles:
 				'./src/styles/global.css',

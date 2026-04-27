@@ -1,15 +1,25 @@
 ---
 title: xaa
 description: xaa (aka aa, xia-aa) is a youtuber/ceo/dev. built aa code, aa chat and more.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
-hero:
-  tagline: builds things
+template: splash
+head:
+  - tag: title
+    content: xaa
+draft: true
+hero: 
+  tagline: builds things	# tab characters must not be used in indentation
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
+    - text: 告诉我更多
       link: /guides/example/
       icon: right-arrow
+    - text: 在 GitHub 上查看
+      link: https://github.com/astronaut/my-project
+      icon: external
+      variant: minimal
+      attrs:
+        rel: me
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
@@ -17,20 +27,20 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Next steps
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Update content" icon="pencil">
+    Edit `src/content/docs/index.mdx` to see this page change.
+  </Card>
+  <Card title="Change page layout" icon="document">
+    Delete `template: splash` in `src/content/docs/index.mdx` to display a
+    sidebar on this page.
+  </Card>
+  <Card title="Add new content" icon="add-document">
+    Add Markdown or MDX files to `src/content/docs` to create new pages.
+  </Card>
+  <Card title="Configure your site" icon="setting">
+    Edit your `sidebar` and other config in `astro.config.mjs`.
+  </Card>
+  <Card title="Read the docs" icon="open-book">
+    Learn more in [the Starlight Docs](https://starlight.astro.build/).
+  </Card>
 </CardGrid>

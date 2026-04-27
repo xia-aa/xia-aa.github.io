@@ -4,3 +4,7 @@
 @import '@astrojs/starlight-tailwind';
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
+
+.sl-flex.actions {
+	@apply flex-col justify-center items-center;
+}
