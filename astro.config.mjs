@@ -8,40 +8,36 @@ export default defineConfig({
 	site: 'https://xia-aa.github.io',
 	integrations: [
 		starlight({
-			title: {
-				en: 'My Docs',
-				'zh-CN': '我的文档',
-			},
+			title: "xaa",
 			customCss: [
 				// Path to your Tailwind base styles:
 				'./src/styles/global.css',
 			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
-			sidebar: [
-				{
-					label: 'Guides',
-					translations: {
-						"zh-CN": "指南",
-					},
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{
-							label: 'Example Guide',
-							translations: {
-								"zh-CN": "示例指南",
-							},
-							slug: 'guides/example'
+sidebar: [
+			{
+				label: 'Guides',
+				translations: {
+					'zh-CN': '指南',
+				},
+				items: [
+					{
+						label: 'Example Guide',
+						translations: {
+							'zh-CN': '示例指南',
 						},
-					],
-				},
-				{
-					label: 'Reference',
-					translations: {
-						"zh-CN": "参考",
+						slug: 'guides/example'
 					},
-					autogenerate: { directory: 'reference' },
+				],
+			},
+			{
+				label: 'Reference',
+				translations: {
+					'zh-CN': '参考',
 				},
-			],
+				autogenerate: { directory: 'reference' },
+			},
+		],
 			// 为此网站设置英语为默认语言。
 			defaultLocale: 'root',
 			locales: {
