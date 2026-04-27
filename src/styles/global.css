@@ -1,10 +1,10 @@
-@import 'tailwindcss';
-@layer base, starlight, theme, components, utilities;
-
 @import '@astrojs/starlight-tailwind';
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 
-.sl-flex.actions {
-	@apply flex-col justify-center items-center;
+@import 'tailwindcss';
+@layer starlight, base, theme, components, utilities;
+
+.main-frame {
+	@apply flex-1;
 }
