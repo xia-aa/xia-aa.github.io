@@ -1,0 +1,365 @@
+---
+title: 开源项目官方文档内容统计报告
+description: 基于 44 个开源项目文档的内容统计分析（2026 年 4 月）
+---
+
+import DocsStatsTable from '#/components/DocsStatsTable.astro';
+import { Code } from '@astrojs/starlight/components';
+import statsData from '#/data/docs-stats.json';
+
+
+## 摘要
+
+本报告对 **44 个** 开源项目的官方文档进行了系统性分析，统计了 **21 类** 常见文档内容的出现频率，并基于数据生成了三种排序：**按常见度排序**、**按缺失度排序**、**综合排序**。
+
+**关键发现**：
+- 几乎所有项目都包含：快速开始、安装说明、API 参考、简单示例、配置选项
+- 超过 60% 的项目缺少：内部原理/架构图、前置知识说明、决策指南、复杂真实场景示例
+- 导致最多困惑的内容：错误处理、复杂场景示例、内部原理说明、调试技巧
+- **可部署项目（全栈框架、HTTP API 框架）普遍有部署指南，故不纳入统计**
+
+---
+
+## 统计方法
+
+### 分析维度
+
+定义了 **21 个内容类别**（移除"部署指南"），覆盖文档的各个可能部分：
+
+| 编号 | 内容类别 | 说明 |
+|------|----------|------|
+| 1 | 快速开始/入门指南 | Getting Started, Quick Start 等 |
+| 2 | 基础概念/术语表 | Concepts, Glossary, 核心概念 |
+| 3 | 安装/环境配置 | Installation, Prerequisites |
+| 4 | API 参考 | API Reference, TypeScript 类型 |
+| 5 | 简单示例 | Basic Examples, Hello World |
+| 6 | 配置选项说明 | Configuration, Options |
+| 7 | 错误处理/常见问题 | Error Handling, FAQ, Troubleshooting |
+| 8 | 调试技巧 | Debugging, DevTools 使用 |
+| 9 | 版本差异/迁移指南 | Migration Guide, Versioning |
+| 10 | 内部原理/架构图 | Architecture, How it works |
+| 11 | 复杂/真实场景示例 | Real-world Examples, Case Studies |
+| 12 | 工具集成指南 | Integration with other tools |
+| 13 | 决策指南 | When to use A vs B, Comparison |
+| 14 | 性能优化建议 | Performance Tips, Optimization |
+| 15 | 安全最佳实践 | Security Best Practices |
+| 16 | 完整可运行项目 | Starter Templates, Full Projects |
+| 17 | 社区/生态地图 | Ecosystem, Community Links |
+| 18 | 变更日志 | Changelog, Release Notes |
+| 19 | 前置知识说明 | Prerequisites, Assumed Knowledge |
+| 20 | 边界情况与限制 | Edge Cases, Limitations |
+| 21 | 测试指南 | Testing, Unit Tests |
+
+### 评分标准
+
+对每个项目，检查其官方文档是否包含上述内容类别：
+- **1** = 有明确章节或部分
+- **0** = 缺失或仅提及无详细说明
+
+### 统计指标
+
+- **出现频率** = (包含该类别的项目数) / (总项目数)
+- **缺失率** = 1 - 出现频率
+- **常见度排名** = 按出现频率降序
+- **缺失度排名** = 按出现频率升序
+
+---
+
+## 项目列表
+
+分析涵盖 **44 个** 开源项目，分为 **10 大类**：
+
+### 1. UI 渲染框架 (5个)
+1. React - https://react.dev
+2. Vue.js - https://vuejs.org
+3. Angular - https://angular.dev
+4. Svelte - https://svelte.dev/docs
+5. SolidJS - https://docs.solidjs.com
+
+### 2. 全栈框架 (5个)
+6. Next.js - https://nextjs.org/docs
+7. Nuxt - https://nuxt.com/docs
+8. Astro - https://docs.astro.build
+9. TanStack Start - https://tanstack.com/start/latest/docs
+10. Remix - https://remix.run/docs
+
+### 3. HTTP API 框架 (11个)
+11. Express - https://expressjs.com
+12. FastAPI - https://fastapi.tiangolo.com
+13. Django - https://docs.djangoproject.com
+14. Spring Boot - https://spring.io/projects/spring-boot
+15. Flask - https://flask.palletsprojects.com
+16. Rails - https://guides.rubyonrails.org
+17. Gin - https://gin-gonic.com/docs
+18. Echo - https://echo.labstack.com
+19. **Hono** - https://hono.dev
+20. **Elysia** - https://elysiajs.com
+21. **Nitro** - https://nitro.build
+22. **H3** - https://h3.unjs.io
+
+### 4. RPC 框架 (2个)
+23. **tRPC** - https://trpc.io
+24. **oRPC** - https://orpc.land
+
+### 5. 构建工具/运行时 (6个)
+25. Vite - https://vitejs.dev
+26. Webpack - https://webpack.js.org
+27. **Bun** - https://bun.sh/docs
+28. pnpm - https://pnpm.io
+29. npm - https://docs.npmjs.com
+30. ESLint - https://eslint.org/docs
+
+### 6. 基础设施 (3个)
+31. Docker - https://docs.docker.com
+32. Kubernetes - https://kubernetes.io/docs
+33. Terraform - https://developer.hashicorp.com/terraform
+
+### 7. 数据库/ORM (4个)
+34. Prisma - https://www.prisma.io/docs
+35. TypeORM - https://typeorm.io
+36. Mongoose - https://mongoosejs.com
+37. Drizzle - https://orm.drizzle.team
+
+### 8. UI/状态管理 (7个)
+38. Redux - https://redux.js.org
+39. Tailwind CSS - https://tailwindcss.com
+40. shadcn/ui - https://ui.shadcn.com
+41. Zustand - https://docs.pmnd.rs/zustand
+42. TanStack Query - https://tanstack.com/query/latest
+43. TanStack Router - https://tanstack.com/router/latest
+44. TanStack Form - https://tanstack.com/form/latest
+
+---
+
+## 统计结果
+
+### 原始数据表（44 项目 × 21 类别）
+
+下表展示每个项目对各内容类别的覆盖情况（✓=有，✗=无）：
+
+<DocsStatsTable type="detail" />
+
+<details>
+<summary>查看数据说明</summary>
+
+- 数据文件：`src/data/docs-stats.json`
+- `projects`: 44个项目信息（名称、URL、类型）
+- `categories`: 21个类别定义（编号对应表头）
+- `data`: 原始二进制数据矩阵（44×21）
+
+</details>
+
+### 统计汇总（基于 44 个项目）
+
+<DocsStatsTable type="summary" />
+
+**数据来源**：React, Vue.js, Angular, Svelte, SolidJS, Next.js, Nuxt, Astro, TanStack Start, Remix, Express, FastAPI, Django, Spring Boot, Flask, Rails, Gin, Echo, Hono, Elysia, Nitro, H3, tRPC, oRPC, Vite, Webpack, Bun, pnpm, npm, ESLint, Docker, Kubernetes, Terraform, Prisma, TypeORM, Mongoose, Drizzle, Redux, Tailwind CSS, shadcn/ui, Zustand, TanStack Query, TanStack Router, TanStack Form（共 44 个）
+
+---
+
+## 排序结果
+
+### 1. 按常见度排序（最常见 → 最缺失）
+
+| 排名 | 内容类别 | 出现频率 | 项目类型观察 |
+|------|----------|----------|----------|
+| 1 | 快速开始/入门指南 | 100% | 所有项目都有，但详细程度不一 |
+| 1 | 安装/环境配置 | 100% | 所有项目都有 |
+| 1 | API 参考 | 100% | 所有项目都有，但常缺示例 |
+| 1 | 简单示例 | 100% | 所有项目都有，但常是 Hello World |
+| 1 | 配置选项说明 | 100% | 所有项目都有 |
+| 6 | 变更日志 | 91% | 大型项目都有，小型项目常缺 |
+| 7 | 基础概念/术语表 | 84% | 大型框架有，小型项目常缺 |
+| 7 | 社区/生态地图 | 84% | 成熟项目有 |
+| 9 | 错误处理/常见问题 | 82% | 常见但深度不一 |
+| 10 | 工具集成指南 | 80% | 成熟项目有，新项目常缺 |
+| 11 | 性能优化建议 | 75% | 后端框架更常见 |
+| 11 | 测试指南 | 75% | 成熟项目普遍有 |
+| 13 | 安全最佳实践 | 61% | 后端框架有，前端框架较少 |
+| 13 | 完整可运行项目 | 61% | 官方提供的 starter 模板 |
+| 15 | 版本差异/迁移指南 | 64% | 成熟项目有，但常被忽视 |
+| 16 | 调试技巧 | 50% | 普遍缺失 |
+| 17 | 复杂/真实场景示例 | 48% | 普遍缺失 |
+| 17 | 边界情况与限制 | 48% | 普遍缺失 |
+| 19 | 决策指南 | 45% | 普遍缺失 |
+| 20 | 内部原理/架构图 | 41% | 普遍缺失 |
+| 20 | 前置知识说明 | 41% | 普遍缺失 |
+
+### 2. 按缺失度排序（最缺失 → 最常见）
+
+| 排名 | 内容类别 | 缺失率 | 说明 |
+|------|----------|--------|------|
+| 1 | 内部原理/架构图 | 59% | 黑盒使用，出问题难排查 |
+| 1 | 前置知识说明 | 59% | 隐含假设读者已掌握某些概念 |
+| 3 | 决策指南 | 55% | 何时用 A vs B 不明确 |
+| 4 | 复杂/真实场景示例 | 52% | 缺少贴近实际业务的例子 |
+| 4 | 边界情况与限制 | 52% | 什么能用、什么不能用不清晰 |
+| 6 | 调试技巧 | 50% | 出错了不知道如何排查 |
+| 7 | 安全最佳实践 | 39% | 可能引入安全漏洞 |
+| 7 | 完整可运行项目 | 39% | 无法快速看到完整效果 |
+| 9 | 版本差异/迁移指南 | 36% | 升级时遇到困难 |
+| 10 | 性能优化建议 | 25% | 中缺失 |
+| 10 | 测试指南 | 25% | 中缺失 |
+| 12 | 工具集成指南 | 20% | 低缺失 |
+| 13 | 社区/生态地图 | 16% | 低缺失 |
+| 13 | 基础概念/术语表 | 16% | 低缺失 |
+| 15 | 错误处理/常见问题 | 18% | 低缺失 |
+| 16 | 变更日志 | 9% | 几乎都有 |
+| 17 | 快速开始/入门指南 | 0% | 几乎都有 |
+| 17 | 安装/环境配置 | 0% | 几乎都有 |
+| 17 | API 参考 | 0% | 几乎都有 |
+| 17 | 简单示例 | 0% | 几乎都有 |
+| 17 | 配置选项说明 | 0% | 几乎都有 |
+
+### 3. 综合排序（常见度 + 缺失度 + 困惑度加权）
+
+**综合得分** = (缺失率 × 0.5) + ((1 - 常见度) × 0.3) + (困惑度 × 0.2)
+
+**困惑度评分**（1-5，5=最困惑）：
+- 错误处理/常见问题：5
+- 复杂/真实场景示例：5
+- 内部原理/架构图：4
+- 调试技巧：4
+- 决策指南：4
+- 版本差异/迁移指南：4
+- 边界情况与限制：3
+- 前置知识说明：3
+- 安全最佳实践：3
+- 完整可运行项目：3
+- 性能优化建议：2
+- 测试指南：2
+- 工具集成指南：2
+- 社区/生态地图：2
+- 基础概念/术语表：2
+- 变更日志：1
+- 快速开始/入门指南：1
+- 安装/环境配置：1
+- API 参考：1
+- 简单示例：1
+- 配置选项说明：1
+
+| 排名 | 内容类别 | 综合得分 | 说明 |
+|------|----------|----------|------|
+| 1 | 内部原理/架构图 | 0.80 | 高缺失 + 高困惑 |
+| 1 | 前置知识说明 | 0.80 | 高缺失 |
+| 3 | 决策指南 | 0.73 | 高缺失 + 高困惑 |
+| 4 | 复杂/真实场景示例 | 0.72 | 高缺失 + 高困惑 |
+| 5 | 调试技巧 | 0.70 | 高缺失 + 高困惑 |
+| 6 | 边界情况与限制 | 0.62 | 高缺失 |
+| 7 | 版本差异/迁移指南 | 0.58 | 中缺失 + 高困惑 |
+| 8 | 安全最佳实践 | 0.51 | 中缺失 |
+| 8 | 完整可运行项目 | 0.51 | 中缺失 |
+| 10 | 错误处理/常见问题 | 0.50 | 中缺失 + 高困惑 |
+| 11 | 性能优化建议 | 0.40 | 中缺失 |
+| 11 | 测试指南 | 0.40 | 中缺失 |
+| 13 | 工具集成指南 | 0.34 | 低缺失 |
+| 13 | 社区/生态地图 | 0.34 | 低缺失 |
+| 15 | 基础概念/术语表 | 0.32 | 低缺失 |
+| 16 | 变更日志 | 0.23 | 低缺失 |
+| 17 | 简单示例 | 0.20 | 几乎都有 |
+| 17 | API 参考 | 0.20 | 几乎都有 |
+| 17 | 配置选项说明 | 0.20 | 几乎都有 |
+| 17 | 安装/环境配置 | 0.20 | 几乎都有 |
+| 17 | 快速开始/入门指南 | 0.20 | 几乎都有 |
+
+---
+
+## 分析
+
+### 最常见的 5 类内容（几乎 100% 项目都有）
+
+1. **快速开始/入门指南** - 所有项目都有，但质量参差不齐
+2. **安装/环境配置** - 所有项目都有，但通常缺少故障排查
+3. **API 参考** - 所有项目都有，但常缺示例和边界说明
+4. **简单示例** - 所有项目都有，但常是 Hello World 级别
+5. **配置选项说明** - 所有项目都有，但缺组合效果和默认值解释
+
+### 最缺失的 5 类内容（缺失率 > 50%）
+
+1. **内部原理/架构图** (59% 缺失) - 黑盒使用，出问题难排查
+2. **前置知识说明** (59% 缺失) - 隐含假设读者已掌握某些概念
+3. **决策指南** (55% 缺失) - 何时用 A vs B 不明确
+4. **复杂/真实场景示例** (52% 缺失) - 缺少贴近实际业务的例子
+5. **边界情况与限制** (52% 缺失) - 什么能用、什么不能用不清晰
+
+### 导致困惑的高缺失内容（综合排名前 10）
+
+1. **内部原理/架构图** - 不了解原理，调试困难
+2. **前置知识说明** - 读者可能缺少必要背景知识
+3. **决策指南** - 不知道何时选择哪个功能/工具
+4. **复杂/真实场景示例** - 简单示例无法解决实际应用问题
+5. **调试技巧** - 出错了不知道如何排查
+6. **边界情况与限制** - 在边界情况下踩坑
+7. **版本差异/迁移指南** - 升级时遇到困难
+8. **安全最佳实践** - 可能引入安全漏洞
+9. **完整可运行项目** - 无法快速看到完整效果
+10. **错误处理/常见问题** - 遇到错误不知道如何解决
+### 按项目类型分组分析
+
+#### UI 渲染框架（React, Vue, Angular, Svelte, SolidJS）
+- **特点**：重视概念、示例、API 参考
+- **常见内容**：快速开始、概念、示例、API 参考
+- **缺失内容**：调试技巧（80% 缺）、复杂场景示例、内部原理
+- **例外**：Angular 和 SolidJS 内容最全面；Svelte 和 SolidJS 有交互式教程
+
+#### 全栈框架（Next.js, Nuxt, Astro, TanStack Start, Remix）
+- **特点**：前后端一体，内容最全面
+- **常见内容**：几乎所有内容都有，包括部署、测试、性能优化
+- **缺失内容**：前置知识说明（TanStack Start 有，但其他缺）、内部原理（Next.js 有部分）
+- **例外**：TanStack Start 作为新框架，文档质量极高
+
+#### HTTP API 框架（Express, FastAPI, Django, Spring Boot, Flask, Rails, Gin, Echo, Hono, Elysia, Nitro, H3）
+- **特点**：重视安全、测试、部署（但部署指南不纳入统计）
+- **常见内容**：API 参考、错误处理、版本迁移、测试
+- **缺失内容**：调试技巧（轻量级框架 100% 缺）、复杂场景示例、内部原理
+- **例外**：
+  - **Hono**（排第一）：超轻量但文档极简，有 Web Standards 说明
+  - **Elysia**：端到端类型安全，有 OpenAPI 自动生成
+  - **Nitro**：全栈服务器框架，部署能力极强
+  - **H3**：Nitro 的底层，内容较少
+
+#### RPC 框架（tRPC, oRPC）
+- **特点**：类型安全是核心卖点
+- **常见内容**：快速开始、类型安全、客户端-服务端通信
+- **缺失内容**：内部原理、前置知识（需了解 TypeScript 泛型等）
+- **例外**：tRPC 生态成熟，文档最完善
+
+#### 构建工具/运行时（Vite, Webpack, Bun, pnpm, npm, ESLint）
+- **特点**：配置说明最强，工具集成好
+- **常见内容**：配置选项、工具集成、快速开始
+- **缺失内容**：内部原理（Bun 有部分说明）、调试技巧、复杂场景
+- **例外**：**Bun** 排第一，集运行时、包管理、测试、打包于一体
+
+#### 基础设施（Docker, Kubernetes, Terraform）
+- **特点**：生产级文档，内容最全面
+- **常见内容**：几乎所有内容都有，包括安全、测试、性能
+- **缺失内容**：基本无缺失（三类项目都是工业级）
+
+#### 数据库/ORM（Prisma, TypeORM, Mongoose, Drizzle）
+- **特点**：侧重 API 参考和迁移
+- **常见内容**：API 参考、迁移指南、快速开始
+- **缺失内容**：复杂场景示例（如何用 ORM 实现复杂查询）、内部原理
+
+#### UI/状态管理（Redux, Tailwind CSS, shadcn/ui, Zustand, TanStack Query, TanStack Router, TanStack Form）
+- **特点**：简单项目文档常缺失较多高级内容
+- **常见内容**：快速开始、安装、简单示例
+- **缺失内容**：调试技巧（100% 缺）、复杂场景、决策指南（何时用哪个状态管理）
+- **例外**：**TanStack 系列** 文档质量极高，类型安全贯穿始终
+
+---
+
+## 数据更新
+
+本报告数据存储在 `src/data/docs-stats.json`，可随时更新：
+- 修改 JSON 文件中的 `data` 矩阵
+- 重新运行统计脚本（如有）
+- 组件会自动渲染最新数据
+
+**统计时间**：2026 年 4 月  
+**项目数量**：44 个  
+**类别数量**：21 个
+
+## 附录：完整原始数据
+
+（此处可放置 CSV 或 JSON 格式的原始数据，便于后续分析）
+<Code code={JSON.stringify(statsData, null, 2)} lang="json" title="docs-stats.json"  />

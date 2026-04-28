@@ -1,11 +1,11 @@
 ---
-title: Example Reference
-description: A reference page in my new Starlight docs site.
+title: 示例参考
+description: 我新的 Starlight 文档站点中的参考页面。
 ---
 
-Reference pages are ideal for outlining how things work in terse and clear terms.
-Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what you're documenting.
+参考页面非常适合以简洁明了的方式概述事物的工作原理。
+它们不太关注讲述故事或解决特定的用例，而是为您提供所记录内容的全面概述。
 
-## Further reading
+## 进一步阅读
 
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+- 在 Diátaxis 框架中阅读[关于参考](https://diataxis.fr/reference/)

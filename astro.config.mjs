@@ -17,7 +17,7 @@ export default defineConfig({
 				'./src/styles/global.css',
 			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
-sidebar: [
+		sidebar: [
 			{
 				label: 'Guides',
 				translations: {
@@ -31,6 +31,13 @@ sidebar: [
 						},
 						slug: 'guides/example'
 					},
+					{
+						label: 'Islands Architecture',
+						translations: {
+							'zh-CN': '岛屿架构',
+						},
+						slug: 'guides/islands'
+					},
 				],
 			},
 			{
@@ -40,16 +47,31 @@ sidebar: [
 				},
 				autogenerate: { directory: 'reference' },
 			},
+			{
+				label: 'Reports',
+				translations: {
+					'zh-CN': '报告',
+				},
+				items: [
+					{
+						label: 'Docs Content Stats',
+						translations: {
+							'zh-CN': '文档内容统计',
+						},
+						slug: 'reports/docs-stats'
+					},
+				],
+			},
 		],
 			// 为此网站设置英语为默认语言。
 			defaultLocale: 'root',
 			locales: {
-				root: {
+				en: {
 					label: 'English',
 					lang: 'en', // lang 是 root 语言必须的
 				},
 				// 简体中文文档在 `src/content/docs/zh-cn/` 中。
-				'zh-cn': {
+				"root": {
 					label: '简体中文',
 					lang: 'zh-CN',
 				},

@@ -1,0 +1,61 @@
+---
+import statsData from '#/data/docs-stats.json';
+
+export interface Props {
+  type?: 'summary' | 'detail';
+}
+
+const { type = 'summary' } = Astro.props;
+---
+
+{type === 'detail' && (
+  <div class="docs-stats-table detail-table">
+    <table>
+      <thead>
+        <tr>
+          <th>项目</th>
+          {statsData.categories.map((cat) => (
+            <th title={cat.desc}>{cat.id}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {statsData.data.map((row, idx) => (
+          <tr>
+            <td>{statsData.projects[idx]?.name || `项目 ${idx + 1}`}</td>
+            {row.map((val) => (
+              <td class={val ? 'text-green-400' : 'text-red-400'}>{val ? '✓' : '✗'}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{type === 'summary' && (
+  <div class="docs-stats-table summary-table">
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>内容类别</th>
+          <th>出现次数</th>
+          <th>出现频率</th>
+          <th>缺失率</th>
+        </tr>
+      </thead>
+      <tbody>
+        {statsData.summary.map((row, idx) => (
+          <tr>
+            <td>{row.id}</td>
+            <td>{row.name}</td>
+            <td>{row.count}</td>
+            <td>{(row.freq*100)}%</td>
+            <td>{(row.missing * 100).toFixed(2)}%</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
