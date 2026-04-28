@@ -29,7 +29,7 @@
     {"name": "Nitro", "url": "https://nitro.build", "type": "HTTP API 框架"},
     {"name": "H3", "url": "https://h3.unjs.io", "type": "HTTP API 框架"},
     {"name": "tRPC", "url": "https://trpc.io", "type": "RPC 框架"},
-    {"name": "oRPC", "url": "https://orpc.land", "type": "RPC 框架"},
+    {"name": "oRPC", "url": "https://orpc.dev", "type": "RPC 框架"},
     {"name": "Vite", "url": "https://vitejs.dev", "type": "构建工具/运行时"},
     {"name": "Webpack", "url": "https://webpack.js.org", "type": "构建工具/运行时"},
     {"name": "Bun", "url": "https://bun.sh/docs", "type": "构建工具/运行时"},
