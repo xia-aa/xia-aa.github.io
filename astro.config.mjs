@@ -9,6 +9,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: "xaa",
+			favicon: '/favicon.ico',
 			components: {
       },
 			customCss: [
