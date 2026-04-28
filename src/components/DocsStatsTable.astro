@@ -2,13 +2,15 @@
 import statsData from '#/data/docs-stats.json';
 
 export interface Props {
-  type?: 'summary' | 'detail';
+  type?: 'summary' | 'raw';
 }
 
 const { type = 'summary' } = Astro.props;
+const linksData = statsData.links || {};
+type KeyOfData = keyof typeof statsData.data;
 ---
 
-{type === 'detail' && (
+{type === 'raw' && (
   <div class="docs-stats-table detail-table">
     <table>
       <thead>
@@ -20,12 +22,17 @@ const { type = 'summary' } = Astro.props;
         </tr>
       </thead>
       <tbody>
-        {statsData.data.map((row, idx) => (
+        {Object.entries(statsData.data).map(([projName, row]) => (
           <tr>
-            <td>{statsData.projects[idx]?.name || `项目 ${idx + 1}`}</td>
-            {row.map((val) => (
-              <td class={val ? 'text-green-400' : 'text-red-400'}>{val ? '✓' : '✗'}</td>
-            ))}
+            <td>{projName}</td>
+            {row.map((val, idx) => {
+              const link = linksData[projName as KeyOfData]?.[idx];
+              return (
+                <td class={val ? 'text-green-400' : 'text-red-400'}>
+                  {link ? <a href={link} class="text-inherit!" target="_blank" rel="noopener">{val ? '✓' : '✗'}</a> : (val ? '✓' : '✗')}
+                </td>
+              );
+            })}
           </tr>
         ))}
       </tbody>
@@ -51,8 +58,8 @@ const { type = 'summary' } = Astro.props;
             <td>{row.id}</td>
             <td>{row.name}</td>
             <td>{row.count}</td>
-            <td>{(row.freq*100)}%</td>
-            <td>{(row.missing * 100).toFixed(2)}%</td>
+            <td>{(row.freq*100).toFixed(4)}%</td>
+            <td>{(row.missing * 100).toFixed(4)}%</td>
           </tr>
         ))}
       </tbody>

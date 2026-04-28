@@ -2,12 +2,15 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
+import starlightLinksValidator from 'starlight-links-validator'
+
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://xia-aa.github.io',
 	integrations: [
 		starlight({
+			plugins: [starlightLinksValidator()],
 			title: "xaa",
 			favicon: '/favicon.ico',
 			components: {
