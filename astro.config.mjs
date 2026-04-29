@@ -41,6 +41,13 @@ export default defineConfig({
 						},
 						slug: 'guides/islands'
 					},
+					{
+						label: 'UI Framework Migration',
+						translations: {
+							'zh-CN': 'UI框架迁移',
+						},
+						slug: 'guides/ui-framework-migration',
+					},
 				],
 			},
 			{
