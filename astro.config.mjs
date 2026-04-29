@@ -3,23 +3,33 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import starlightLinksValidator from 'starlight-links-validator'
-
-
+import starlightCatppuccin from '@catppuccin/starlight'
+import starlightUiTweaks from 'starlight-ui-tweaks'
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://xia-aa.github.io',
 	integrations: [
 		starlight({
-			plugins: [starlightLinksValidator()],
-			title: "xaa",
-			favicon: '/favicon.ico',
-			components: {
-      },
-			customCss: [
-				// Path to your Tailwind base styles:
-				'./src/styles/global.css',
-			],
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
+					// 为此网站设置英语为默认语言。
+			defaultLocale: 'root',
+			locales: {
+				en: {
+					label: 'English',
+					lang: 'en', // lang 是 root 语言必须的
+				},
+				// 简体中文文档在 `src/content/docs/zh-cn/` 中。
+				"root": {
+					label: '简体中文',
+					lang: 'zh-CN',
+				},
+			},
+			plugins: [
+				// starlightLinksValidator(),
+				 starlightUiTweaks(), starlightCatppuccin({
+				          dark: { flavor: "macchiato", accent: "lavender" },
+          light: { flavor: "latte", accent: "lavender" },
+			})],
+
 		sidebar: [
 			{
 				label: 'Guides',
@@ -50,6 +60,29 @@ export default defineConfig({
 					},
 				],
 			},
+						{
+				label: 'Docs',
+				translations: {
+					'zh-CN': '文档',
+				},
+				items: [{
+					label: 'TanStack',
+					items: [{
+						label: "TanStack DB",
+						items: [
+							{
+								label: "Guides",
+								items: [{
+									slug: "docs/tanstack/db/guides/mutations"
+								}]
+							}
+						]
+					}
+
+					]
+				}]
+	
+			},
 			{
 				label: 'Reference',
 				translations: {
@@ -73,22 +106,15 @@ export default defineConfig({
 				],
 			},
 		],
-			// 为此网站设置英语为默认语言。
-			defaultLocale: 'root',
-			locales: {
-				en: {
-					label: 'English',
-					lang: 'en', // lang 是 root 语言必须的
-				},
-				// 简体中文文档在 `src/content/docs/zh-cn/` 中。
-				"root": {
-					label: '简体中文',
-					lang: 'zh-CN',
-				},
-			},
+				title: "xaa",
+			favicon: '/favicon.ico',
+			customCss: [
+				// Path to your Tailwind base styles:
+				'./src/styles/global.css',
+			],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
 		}),
 	],
-
 	vite: {
 		plugins: [tailwindcss()],
 	},
