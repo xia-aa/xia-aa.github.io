@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 import starlightLinksValidator from 'starlight-links-validator'
 import starlightCatppuccin from '@catppuccin/starlight'
 import starlightUiTweaks from 'starlight-ui-tweaks'
+import starlightSidebarTopics from 'starlight-sidebar-topics'
+
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://xia-aa.github.io',
@@ -24,89 +27,49 @@ export default defineConfig({
 				},
 			},
 			plugins: [
+				        starlightSidebarTopics([
+          {
+            label: 'Docs',
+            link: '/docs/',
+            icon: 'open-book',
+            items: [
+              {
+                label: 'TanStack DB',
+                items: [
+                  'docs/tanstack-db/guides/live-queries',
+                  'docs/tanstack-db/guides/mutations',
+                  'docs/tanstack-db/guides/collection-options-creator'
+                ]
+              },
+              'docs/copyright'
+            ]
+          },
+          {
+            label: 'Notes',
+            link: '/notes/ui-framework-migration',
+            icon: 'pen',
+            items: ["notes/ui-framework-migration", 'notes/getting-started', 'notes/islands'],
+          },
+          {
+            label: 'Reference',
+            link: '/reference/example',
+            icon: 'information',
+            items: ['reference/example'],
+          },
+					          {
+            label: 'Stats',
+            link: '/reports/docs-stats',
+            items: ['reports/docs-stats'],
+          },
+
+        ]),
 				// starlightLinksValidator(),
 				 starlightUiTweaks(), starlightCatppuccin({
 				          dark: { flavor: "macchiato", accent: "lavender" },
           light: { flavor: "latte", accent: "lavender" },
 			})],
 
-		sidebar: [
-			{
-				label: 'Guides',
-				translations: {
-					'zh-CN': '指南',
-				},
-				items: [
-					{
-						label: 'Example Guide',
-						translations: {
-							'zh-CN': '示例指南',
-						},
-						slug: 'guides/example'
-					},
-					{
-						label: 'Islands Architecture',
-						translations: {
-							'zh-CN': '岛屿架构',
-						},
-						slug: 'guides/islands'
-					},
-					{
-						label: 'UI Framework Migration',
-						translations: {
-							'zh-CN': 'UI框架迁移',
-						},
-						slug: 'guides/ui-framework-migration',
-					},
-				],
-			},
-						{
-				label: 'Docs',
-				translations: {
-					'zh-CN': '文档',
-				},
-				items: [{
-					label: 'TanStack',
-					items: [{
-						label: "TanStack DB",
-						items: [
-							{
-								label: "Guides",
-								items: [{
-									slug: "docs/tanstack/db/guides/mutations"
-								}]
-							}
-						]
-					}
-
-					]
-				}]
-	
-			},
-			{
-				label: 'Reference',
-				translations: {
-					'zh-CN': '参考',
-				},
-				autogenerate: { directory: 'reference' },
-			},
-			{
-				label: 'Reports',
-				translations: {
-					'zh-CN': '报告',
-				},
-				items: [
-					{
-						label: 'Docs Content Stats',
-						translations: {
-							'zh-CN': '文档内容统计',
-						},
-						slug: 'reports/docs-stats'
-					},
-				],
-			},
-		],
-				title: "xaa",
+			title: "xaa",
 			favicon: '/favicon.ico',
 			customCss: [
 				// Path to your Tailwind base styles:

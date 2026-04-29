@@ -1,5 +1,5 @@
 ---
-title: React、Solid、Vue 框架迁移指南
+title: ui 框架迁移指南
 description: 讲解如何在 React、Solid、Vue.js 之间进行项目迁移和代码转换
 lastUpdated: 2026-04-29
 ---
