@@ -54,15 +54,20 @@ export default defineConfig({
                   'docs/tanstack-db/guides/mutations',
                   'docs/tanstack-db/guides/collection-options-creator'
                 ],
-								
               },
-							{
-								label: 'Paraglide Js',
-								items: [
-									'docs/paraglide_js',
-									'docs/paraglide_js/tanstack-start',
-								]
-							},
+              {
+                label: 'Paraglide Js',
+                items: [
+                  'docs/paraglide_js',
+                  'docs/paraglide_js/tanstack-start',
+                ]
+              },
+              {
+                label: 'Electric Sync',
+                items: [
+                  'docs/electric-sync/api/clients/typescript'
+                ]
+              },
               'docs/copyright'
             ]
           },
@@ -78,15 +83,14 @@ export default defineConfig({
             icon: 'information',
             items: ['reference/example'],
           },
-					          {
+          {
             label: 'Stats',
             link: '/reports/docs-stats',
             items: ['reports/docs-stats'],
           },
-
-        ],					{
-						exclude: ['404', 'index'],
-					}),
+        ], {
+          exclude: ['404', 'index'],
+        }),
 				// starlightLinksValidator(),
 				 starlightUiTweaks(), starlightCatppuccin({
 				  dark: { flavor: "macchiato", accent: "lavender" },
