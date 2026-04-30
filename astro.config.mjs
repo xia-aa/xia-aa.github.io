@@ -45,10 +45,7 @@ export default defineConfig({
                  label: 'Skills',
             link: '/skills/',
             items: [
-              {                 label: 'Skills',
-            autogenerate: {
-              directory: 'skills',
-            } }
+              "skills/drizzle-orm/skill"
             ]
           },
           {
