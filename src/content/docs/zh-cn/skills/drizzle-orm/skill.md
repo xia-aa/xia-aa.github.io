@@ -1,5 +1,5 @@
 ---
-title: "Drizzle ORM Development Guidelines"
+title: "Drizzle ORM"
 name: drizzle-orm
 description: Guidelines for developing with Drizzle ORM, a lightweight type-safe TypeScript ORM with SQL-like syntax
 ---
