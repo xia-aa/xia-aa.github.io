@@ -1,6 +1,6 @@
 ---
 title: Mutations
-editUrl: true
+lastUpdated: true
 ---
 
 # TanStack DB Mutations

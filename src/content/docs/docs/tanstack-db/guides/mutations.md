@@ -1,6 +1,6 @@
 ---
 title: 变更操作
-id: mutations
+editUrl: true
 ---
 
 # TanStack DB 变更操作

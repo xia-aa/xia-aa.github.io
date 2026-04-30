@@ -78,6 +78,10 @@ export default defineConfig({
 				'./src/styles/global.css',
 			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
+			  editLink: {
+    baseUrl: 'https://github.com/xia-aa/xia-aa.github.io/edit/main/',
+  },
+	lastUpdated: true,
 		}),
 	],
 	vite: {
