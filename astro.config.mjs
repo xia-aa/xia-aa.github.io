@@ -8,7 +8,6 @@ import starlightUiTweaks from 'starlight-ui-tweaks'
 import starlightSidebarTopics from 'starlight-sidebar-topics'
 import starlightGitHubAlerts from 'starlight-github-alerts';
 import starlightFullViewMode from 'starlight-fullview-mode'
-import rehypeFixImageHeights from '#/plugins/rehype-fix-image-heights.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,12 +42,23 @@ export default defineConfig({
 				starlightGitHubAlerts(),
 				starlightSidebarTopics([
           {
+                 label: 'Skills',
+            link: '/skills/',
+            items: [
+              {                 label: 'Skills',
+            autogenerate: {
+              directory: 'skills',
+            } }
+            ]
+          },
+          {
             label: 'Docs',
             link: '/docs/',
             icon: 'open-book',
             items: [
               {
                 label: 'TanStack DB',
+               
                 items: [
                   'docs/tanstack-db/guides/live-queries',
                   'docs/tanstack-db/guides/mutations',
@@ -75,7 +85,13 @@ export default defineConfig({
             label: 'Notes',
             link: '/notes/ui-framework-migration',
             icon: 'pen',
-            items: ["notes/ui-framework-migration", 'notes/getting-started', 'notes/islands'],
+            items: ["notes/ui-framework-migration", 'notes/getting-started', 'notes/islands',          {
+                        label: 'Skills',
+            // link: '/skills/',
+            autogenerate: {
+              directory: 'skills',
+            }
+          },],
           },
           {
             label: 'Reference',
