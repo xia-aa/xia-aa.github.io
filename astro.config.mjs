@@ -6,6 +6,7 @@ import starlightLinksValidator from 'starlight-links-validator'
 import starlightCatppuccin from '@catppuccin/starlight'
 import starlightUiTweaks from 'starlight-ui-tweaks'
 import starlightSidebarTopics from 'starlight-sidebar-topics'
+import starlightGitHubAlerts from 'starlight-github-alerts';
 
 
 // https://astro.build/config
@@ -27,6 +28,7 @@ export default defineConfig({
 				},
 			},
 			plugins: [
+				starlightGitHubAlerts(),
 				        starlightSidebarTopics([
           {
             label: 'Docs',

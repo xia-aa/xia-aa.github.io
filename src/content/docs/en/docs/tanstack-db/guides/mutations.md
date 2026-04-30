@@ -1,6 +1,6 @@
 ---
 title: Mutations
-id: mutations
+editUrl: true
 ---
 
 # TanStack DB Mutations
