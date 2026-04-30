@@ -1,9 +1,9 @@
+@import 'tailwindcss';
+@layer starlight, base, theme, components, utilities;
 @import '@astrojs/starlight-tailwind';
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import 'starlight-ui-tweaks/styles';
-@import 'tailwindcss';
-@layer starlight, base, theme, components, utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -36,4 +36,14 @@
 	--color-muted: var(--muted);
 
 	--color-primary: var(--primary);
+}
+
+.sl-markdown-content :is(img):not(:where(.not-content *)) {
+	display: inline-flex;
+	width: attr(width px);
+	/* height: 18px; */
+}
+img[height] {
+	width: attr(width px);
+	height: attr(height px); /* 使用 HTML 属性中的高度值 */
 }

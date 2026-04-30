@@ -1,0 +1,15 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+
+const is_paraglide_js = Astro.locals.starlightRoute.id === 'docs/paraglide_js';
+---
+
+{is_paraglide_js && (
+  <style>
+    .sl-markdown-content :is(img):not(:where(.not-content *)) {
+      display: inline-flex;
+      height: 18px;
+    }
+  </style>
+)}
+<Default></Default>
