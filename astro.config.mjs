@@ -57,9 +57,31 @@ export default defineConfig({
                 label: 'TanStack DB',
                
                 items: [
-                  'docs/tanstack-db/guides/live-queries',
+                  {
+                    label: 'guides',
+                    items: [
+                                  'docs/tanstack-db/guides/live-queries',
                   'docs/tanstack-db/guides/mutations',
+                  'docs/tanstack-db/guides/schemas',
+                  'docs/tanstack-db/guides/error-handling',
                   'docs/tanstack-db/guides/collection-options-creator'
+                    ]
+                  },
+                  {
+                    label: 'collection',
+                    items: [
+                      'docs/tanstack-db/collection/query-collection',
+                      'docs/tanstack-db/collection/electric-collection',
+                      'docs/tanstack-db/collection/local-storage-collection',
+                      "docs/tanstack-db/collection/local-only-collection",
+                    ]
+                  },
+                  {
+                    label: 'community',
+                    items: [
+                      "docs/tanstack-db/community/resources",
+                    ]
+                  }
                 ],
               },
               {
