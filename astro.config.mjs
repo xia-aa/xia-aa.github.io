@@ -53,6 +53,22 @@ export default defineConfig({
             link: '/docs/',
             icon: 'open-book',
             items: [
+     {
+      label: 'TanStack Start',
+      items: [{
+        label: 'React',
+        items:[
+         { label: 'Guide',
+          items: [
+            'docs/tanstack-start/react/guide/server-functions',
+            'docs/tanstack-start/react/guide/middleware',
+            'docs/tanstack-start/react/guide/streaming-data-from-server-functions',
+            'docs/tanstack-start/react/guide/server-routes',
+          ]
+         }
+        ]
+      }]
+     },
               {
                 label: 'TanStack DB',
                
@@ -84,6 +100,7 @@ export default defineConfig({
                   }
                 ],
               },
+           
               {
                 label: 'Paraglide Js',
                 items: [
