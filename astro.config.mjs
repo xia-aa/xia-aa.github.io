@@ -70,10 +70,10 @@ export default defineConfig({
                   {
                     label: 'collection',
                     items: [
-                      'docs/tanstack-db/collection/query-collection',
-                      'docs/tanstack-db/collection/electric-collection',
-                      'docs/tanstack-db/collection/local-storage-collection',
-                      "docs/tanstack-db/collection/local-only-collection",
+                      'docs/tanstack-db/collections/query-collection',
+                      'docs/tanstack-db/collections/electric-collection',
+                      'docs/tanstack-db/collections/local-storage-collection',
+                      "docs/tanstack-db/collections/local-only-collection",
                     ]
                   },
                   {
