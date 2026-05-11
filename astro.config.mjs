@@ -38,7 +38,6 @@ export default defineConfig({
   //   // },
   // ],
 			plugins: [
-				starlightFullViewMode(),
 				starlightGitHubAlerts(),
 				starlightSidebarTopics([
           {
@@ -144,7 +143,8 @@ export default defineConfig({
           exclude: ['404', 'index'],
         }),
 				// starlightLinksValidator(),
-				 starlightUiTweaks(), starlightCatppuccin({
+				 starlightUiTweaks(),
+          starlightCatppuccin({
 				  dark: { flavor: "macchiato", accent: "lavender" },
           light: { flavor: "latte", accent: "lavender" },
 			})],
@@ -153,7 +153,7 @@ export default defineConfig({
 			favicon: '/favicon.ico',
 			components: {
 				
-				Head: '#/components/Head.astro',
+				// Head: '#/components/Head.astro',
 			
 			},
 			customCss: [
