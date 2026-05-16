@@ -8,40 +8,41 @@ import starlightUiTweaks from 'starlight-ui-tweaks'
 import starlightSidebarTopics from 'starlight-sidebar-topics'
 import starlightGitHubAlerts from 'starlight-github-alerts';
 import starlightFullViewMode from 'starlight-fullview-mode'
-
+import solidJs from '@astrojs/solid-js';
 // https://astro.build/config
 export default defineConfig({
 
-	site: 'https://xia-aa.github.io',
-	integrations: [
-		starlight({
-					// 为此网站设置英语为默认语言。
-			defaultLocale: 'zh-cn',
-			locales: {
-				en: {
-					label: 'English',
-					lang: 'en', // lang 是 root 语言必须的
-				},
-				// 简体中文文档在 `src/content/docs/zh-cn/` 中。
-				"zh-cn": {
-					label: '简体中文',
-					lang: 'zh-CN',
-				},
-			},
-	// 		head: [
-  //   // {
-  //   //   tag: 'script',
-  //   //   attrs: {
-  //   //     src: '/src/scripts/fix-image-heights.ts',
-  //   //     type: 'module', // Because Astro can handle TypeScript modules
-  //   //   },
-  //   // },
-  // ],
-			plugins: [
-				starlightGitHubAlerts(),
-				starlightSidebarTopics([
+  site: 'https://xia-aa.github.io',
+  integrations: [
+    solidJs({ devtools: true }),
+    starlight({
+      // 为此网站设置英语为默认语言。
+      defaultLocale: 'zh-cn',
+      locales: {
+        en: {
+          label: 'English',
+          lang: 'en', // lang 是 root 语言必须的
+        },
+        // 简体中文文档在 `src/content/docs/zh-cn/` 中。
+        "zh-cn": {
+          label: '简体中文',
+          lang: 'zh-CN',
+        },
+      },
+      // 		head: [
+      //   // {
+      //   //   tag: 'script',
+      //   //   attrs: {
+      //   //     src: '/src/scripts/fix-image-heights.ts',
+      //   //     type: 'module', // Because Astro can handle TypeScript modules
+      //   //   },
+      //   // },
+      // ],
+      plugins: [
+        starlightGitHubAlerts(),
+        starlightSidebarTopics([
           {
-                 label: 'Skills',
+            label: 'Skills',
             link: '/skills/',
             items: [
               "skills/drizzle-orm/skill"
@@ -52,34 +53,35 @@ export default defineConfig({
             link: '/docs/',
             icon: 'open-book',
             items: [
-     {
-      label: 'TanStack Start',
-      items: [{
-        label: 'React',
-        items:[
-         { label: 'Guide',
-          items: [
-            'docs/tanstack-start/react/guide/server-functions',
-            'docs/tanstack-start/react/guide/middleware',
-            'docs/tanstack-start/react/guide/streaming-data-from-server-functions',
-            'docs/tanstack-start/react/guide/server-routes',
-          ]
-         }
-        ]
-      }]
-     },
+              {
+                label: 'TanStack Start',
+                items: [{
+                  label: 'React',
+                  items: [
+                    {
+                      label: 'Guide',
+                      items: [
+                        'docs/tanstack-start/react/guide/server-functions',
+                        'docs/tanstack-start/react/guide/middleware',
+                        'docs/tanstack-start/react/guide/streaming-data-from-server-functions',
+                        'docs/tanstack-start/react/guide/server-routes',
+                      ]
+                    }
+                  ]
+                }]
+              },
               {
                 label: 'TanStack DB',
-               
+
                 items: [
                   {
                     label: 'guides',
                     items: [
-                                  'docs/tanstack-db/guides/live-queries',
-                  'docs/tanstack-db/guides/mutations',
-                  'docs/tanstack-db/guides/schemas',
-                  'docs/tanstack-db/guides/error-handling',
-                  'docs/tanstack-db/guides/collection-options-creator'
+                      'docs/tanstack-db/guides/live-queries',
+                      'docs/tanstack-db/guides/mutations',
+                      'docs/tanstack-db/guides/schemas',
+                      'docs/tanstack-db/guides/error-handling',
+                      'docs/tanstack-db/guides/collection-options-creator'
                     ]
                   },
                   {
@@ -99,7 +101,7 @@ export default defineConfig({
                   }
                 ],
               },
-           
+
               {
                 label: 'Paraglide Js',
                 items: [
@@ -120,13 +122,13 @@ export default defineConfig({
             label: 'Notes',
             link: '/notes/ui-framework-migration',
             icon: 'pen',
-            items: ["notes/ui-framework-migration", 'notes/getting-started', 'notes/islands',          {
-                        label: 'Skills',
-            // link: '/skills/',
-            autogenerate: {
-              directory: 'skills',
-            }
-          },],
+            items: ["notes/ui-framework-migration", 'notes/getting-started', 'notes/islands', {
+              label: 'Skills',
+              // link: '/skills/',
+              autogenerate: {
+                directory: 'skills',
+              }
+            },],
           },
           {
             label: 'Reference',
@@ -139,36 +141,41 @@ export default defineConfig({
             link: '/reports/docs-stats',
             items: ['reports/docs-stats'],
           },
+                    {
+            label: 'me',
+            link: '/me/',
+          }
         ], {
           exclude: ['404', 'index'],
         }),
-				// starlightLinksValidator(),
-				 starlightUiTweaks(),
-          starlightCatppuccin({
-				  dark: { flavor: "macchiato", accent: "lavender" },
+        // starlightLinksValidator(),
+        starlightUiTweaks(),
+        starlightCatppuccin({
+          dark: { flavor: "macchiato", accent: "lavender" },
           light: { flavor: "latte", accent: "lavender" },
-			})],
+        })
+      ],
 
-			title: "xaa",
-			favicon: '/favicon.ico',
-			components: {
-				
-				// Head: '#/components/Head.astro',
-			
-			},
-			customCss: [
-				// Path to your Tailwind base styles:
-				'./src/styles/global.css',
-			],
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
-			editLink: {
-    		baseUrl: 'https://github.com/xia-aa/xia-aa.github.io/edit/main/',
-  		},
-			lastUpdated: true,
-		}),
-	],
+      title: "xaa",
+      favicon: '/favicon.ico',
+      components: {
+        PageFrame: './src/components/overrides/PageFrame.astro',
+        // Head: '#/components/Head.astro',
 
-	vite: {
-		plugins: [tailwindcss()],
-	},
+      },
+      customCss: [
+        // Path to your Tailwind base styles:
+        './src/styles/global.css',
+      ],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
+      editLink: {
+        baseUrl: 'https://github.com/xia-aa/xia-aa.github.io/edit/main/',
+      },
+      lastUpdated: true,
+    }),
+  ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

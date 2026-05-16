@@ -17,10 +17,12 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
+    "@astrojs/solid-js": "^6.0.1",
     "@astrojs/starlight": "^0.38.4",
     "@astrojs/starlight-tailwind": "^5.0.0",
     "@catppuccin/starlight": "^2.0.1",
     "@tailwindcss/vite": "^4.2.4",
+    "@tanstack/solid-query": "^5.100.10",
     "astro": "^6.1.9",
     "sharp": "^0.34.5",
     "starlight-fullview-mode": "^0.2.6",
