@@ -5,21 +5,28 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import 'starlight-ui-tweaks/styles';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, [data-theme="dark"]) *);
 
 :root {
 	--ctp-lavender: hsl(232deg, 97%, 85%);
-	--foreground: oklch(0.141 0.005 285.823);
+	--ctp-text: hsl(234deg, 16%, 35%);
+	--ctp-overlay2: hsl(232deg, 10%, 53%);
+	--ctp-base: hsl(64, 53%, 94%);
+
+	--foreground: var(--ctp-text);
 	--muted-foreground: oklch(0.552 0.016 285.938);
 	--muted: oklch(0.967 0.001 286.375);
 	--accent: oklch(0.967 0.001 286.375);
 	--primary: var(--ctp-lavender);
+	--primary-foreground: var(--ctp-base);
 	--background: hsl(64, 53%, 94%);
+	--radius: 0.625rem;
 }
 .dark,
 [data-theme='dark'] {
 	--ctp-lavender: hsl(232deg, 97%, 85%);
 	--ctp-text: hsl(226deg 64% 88%); /* text, card-foreground */
+	--ctp-overlay2: hsl(228deg, 20%, 65%);
 	--ctp-overlay1: hsl(230deg, 13%, 55%); /* muted-foreground */
 	--ctp-surface1: hsl(231deg, 16%, 34%); /* accent */
 	--ctp-surface0: hsl(237deg, 16%, 23%); /* secondary,popover,toast,muted */
@@ -31,17 +38,30 @@
 	--muted: var(--ctp-surface0); /* TODO: */
 	--background: var(--ctp-base);
 	--primary: var(--ctp-lavender);
+	--primary-foreground: var(--ctp-base);
 }
 @theme inline {
+	--color-ctp-overlay2: var(--ctp-overlay2);
+	--color-ctp-overlay1: var(--ctp-overlay1);
+	--color-ctp-surface1: var(--ctp-surface1);
 	--color-foreground: var(--foreground);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-accent: var(--accent);
 	--color-muted: var(--muted);
 	--color-background: var(--background);
 	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--radius-xs: calc(var(--radius) * 0.4);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
 }
 body {
-	@apply bg-background text-foreground;
+	@apply bg-background text-foreground leading-[1.2];
 }
 
 /* .sl-markdown-content :is(img):not(:where(.not-content *)) {
@@ -52,3 +72,37 @@ img[height] {
 	width: attr(width px);
 	height: attr(height px); 
 } */
+
+/* Animation */
+
+.bg-pink-blue-animated {
+	background: linear-gradient(
+		90deg,
+		rgba(238, 174, 202, 0.5),
+		rgba(148, 192, 233, 0.5)
+	);
+	background-size: 400% 400%;
+	animation: bg-pink-blue-animated 6s ease infinite;
+}
+.bg-pink-blue-animated:is([data-theme='dark'] *) {
+	background: linear-gradient(
+		90deg,
+		rgb(245, 211, 226),
+		rgb(249, 202, 223),
+		hsl(232deg, 97%, 85%),
+		rgb(185, 217, 247)
+	);
+	background-size: 400% 400%;
+	animation: bg-pink-blue-animated 6s ease infinite;
+}
+@keyframes bg-pink-blue-animated {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

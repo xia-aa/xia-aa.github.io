@@ -24,17 +24,27 @@
     "@tailwindcss/vite": "^4.2.4",
     "@tanstack/solid-query": "^5.100.10",
     "astro": "^6.1.9",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "motion": "^12.38.0",
     "sharp": "^0.34.5",
+    "solid-devtools": "^0.34.5",
+    "solid-js": "^1.9.13",
     "starlight-fullview-mode": "^0.2.6",
     "starlight-github-alerts": "^0.2.0",
     "starlight-links-validator": "^0.24.0",
     "starlight-sidebar-topics": "^0.7.1",
     "starlight-ui-tweaks": "^0.2.2",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@biomejs/biome": "2.4.13"
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

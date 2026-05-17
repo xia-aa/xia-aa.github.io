@@ -1,0 +1,304 @@
+<theme-toggle>
+  <button
+        class={`theme-toggle flex items-center justify-center relative gap-0 size-10 p-auto [&_svg]:size-4 `}
+      >
+    <svg    stroke-width="4"
+          stroke-linecap="round"
+          width={24}
+          height={24}
+          viewBox='0 0 100 100'
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="relative block m-auto"
+          style={{
+            transformOrigin: '50px 50px',
+            transform: 'translate(0px, 0px)', // Ensure no initial offset
+          }}>
+      <path 
+    
+
+        class='absolute top-0 left-0 stroke-blue-100 shine'
+      />
+
+      <path
+        class="morph"
+      />
+            <g
+            class="stroke-6 stroke-yellow-600 rays"
+            style={{ strokeLinecap: 'round' }}
+          >
+          			<path class="ray" d="M50 2V11" />
+			<path class="ray" d="M85 15L78 22" />
+			<path class="ray" d="M98 50H89" />
+			<path class="ray" d="M85 85L78 78" />
+			<path class="ray" d="M50 98V89" />
+			<path class="ray" d="M23 78L16 84" />
+			<path class="ray" d="M11 50H2" />
+			<path class="ray" d="M23 23L16 16" />
+        </g>
+    </svg>
+  </button>
+</theme-toggle>
+<script>
+
+import {
+	animate,
+	attrEffect,
+	motionValue,
+	stagger,
+	type Variant,
+	type Variants,
+  type AnimationPlaybackControls,
+  type AnimationOptions,
+type ValueKeyframesDefinition
+} from 'motion';
+const sunPath =
+    'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C60 29 69.5 38 70 49.5Z'
+const moonPath =
+    'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C39 45 49.5 59.5 70 49.5Z'
+const shineVariant = {
+	hidden: {
+    d: moonPath,
+		opacity: 0,
+		scale: 2,
+		strokeDasharray: '20, 1000',
+		strokeDashoffset: 0,
+		filter: 'blur(0px)',
+	},
+	visible: {
+    d: moonPath,
+		opacity: [0, 1, 0],
+		strokeDashoffset: [0, -50, -100],
+		filter: ['blur(2px)', 'blur(2px)', 'blur(0px)'],
+		transition: {
+			duration: 0.75,
+			ease: 'linear',
+		},
+	},
+} satisfies Variants
+const morphVariantTransition = {
+  moon: {
+    duration: 1, type: 'spring', damping: 10, stiffness: 100, delay: 0.1
+  },
+  sun: {
+    duration: 1, type: 'spring', damping: 10, stiffness: 100
+  }
+} satisfies Record<string, AnimationOptions>
+const morphVariant = {
+  moon: {
+    d: moonPath,
+    rotate: -360,
+    scale: 2,
+    // transformOrigin: "49.5px 49.5px",
+    stroke: '#60a5fa',
+    fill: '#60a5fa',
+    fillOpacity: 0.35,
+    strokeOpacity: 1,
+  },
+  sun: {
+    d: sunPath,
+    scale: 1,
+    rotate: 0,
+    stroke: '#ca8a04',
+    fill: '#ca8a04',
+    fillOpacity: 0.35,
+    strokeOpacity: 1,
+  }
+} satisfies Variants
+  const raysVariant = {
+    hidden: {
+      strokeOpacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+    visible: {
+      strokeOpacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  }  satisfies Variants
+const rayVariant = {
+  hidden: {
+pathLength: [1, 0], opacity: [1, 0], scale: [1, 0]
+  },
+  visible: {
+    // pathLength: 1,
+    // opacity: 1,
+    // scale: 1,
+    pathLength: [0, 1], opacity: [0, 1], scale: [0, 1]
+  },
+} satisfies Variants
+const rayVariantTransition = {
+  hidden: {
+    		delay: stagger(0.04, { from: 'last' }),
+						duration: 0.2,
+						ease: 'easeOut',
+  },
+visible: {
+      delay: stagger(0.05),
+      duration: 0.5,
+      ease: 'easeOut',
+      // Customize timing for each property
+      // pathLength: { duration: 0.3 },
+      // opacity: { duration: 0.35 },
+      // scale: { duration: 0.3 },
+    },
+}satisfies Record<string, AnimationOptions>
+
+type Theme = "auto" | "dark" | "light";
+  
+/** Key in `localStorage` to store color theme preference at. */
+const storageKey = "starlight-theme";
+
+/** Get a typesafe theme string from any JS value (unknown values are coerced to `'auto'`). */
+const parseTheme = (theme: unknown): Theme =>
+  theme === "auto" || theme === "dark" || theme === "light" ? theme : "auto";
+/** Load the user's preference from `localStorage`. */
+const loadTheme = (): Theme =>
+  parseTheme(
+    typeof localStorage !== "undefined" && localStorage.getItem(storageKey)
+  );
+    /** Store the user's preference in `localStorage`. */
+const storeTheme = (theme: Theme): void => {
+  if (typeof localStorage !== "undefined") {
+    if (theme !== "light" && theme !== "dark") return
+    localStorage.setItem(storageKey, theme);
+  }
+};
+function setStarlightTheme(theme: Theme) {
+	// @ts-expect-error Starlight global
+	StarlightThemeProvider?.updatePickers(theme)
+	document.documentElement.dataset.theme = theme === 'auto' ? getPreferredColorScheme() : theme;
+	storeTheme(theme)
+}
+
+    /** Get the preferred system color scheme. */
+const getPreferredColorScheme = (): Theme =>
+  matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  /** Get the current theme considering auto mode */
+const getCurrentTheme = (): Theme => {
+  const theme = loadTheme();
+  return theme === "auto" ? getPreferredColorScheme() : theme;
+};
+
+
+class ThemeToggle extends HTMLElement {
+  constructor() {
+    super();
+    setStarlightTheme(loadTheme());
+    this.initialIcon()
+    this.querySelector('button')?.addEventListener('click', (e) => {
+      this.toggle();
+    });
+  }
+  private morphD = motionValue(sunPath);
+  private stopAttrEffect?: () => void;
+  private running: AnimationPlaybackControls[] = []
+  connectedCallback() {
+    this.wireMorph();
+  }
+  	disconnectedCallback() {
+		this.stopAttrEffect?.();
+		this.running.forEach((a) => {
+			a.stop();
+		});
+	}
+  	private wireMorph() {
+		this.stopAttrEffect?.();
+		this.stopAttrEffect = attrEffect(this.querySelector('.morph')!, {
+			d: this.morphD,
+		});
+	}
+  private initialIcon = () => {
+    const dark = getCurrentTheme() === 'dark';
+    const morph = this.querySelector<HTMLElement>('.morph')!;
+    const shine = document.querySelector<HTMLElement>('.shine')!
+    const raysRoot = this.querySelector('.rays')!;
+    const rays = this.querySelectorAll('.ray');
+      // Object.assign(shine.style, shineVariant.hidden)
+    animate(shine, shineVariant.hidden, { duration: 0 })
+    if (dark) {
+      animate(morph, morphVariant.moon, { duration: 0 })
+      animate(raysRoot, raysVariant.hidden, { duration: 0 })
+      animate(rays, rayVariant.hidden, { duration: 0 })
+      } else {
+      animate(morph, morphVariant.sun, { duration: 0 })
+      animate(raysRoot, raysVariant.visible, { duration: 0 })
+      animate(rays, rayVariant.visible, { duration: 0 })
+    }
+  }
+  private animateIcon = (toDark: boolean) => { 
+    const morph = document.querySelector('.morph')!
+    const shine = document.querySelector('.shine')!
+    const raysRoot = this.querySelector('.rays')!;
+    const rays = this.querySelectorAll('.ray');
+    const { transition: shineVariantVisibleTransition, ...shineVariantVisible}  =  shineVariant.visible
+    const { transition: raysVariantVisibleTransition, ...raysVariantVisible}  =  raysVariant.visible
+    if (toDark) {
+      this.running.push(
+        animate(shine, shineVariantVisible, shineVariantVisibleTransition),
+        animate(morph, morphVariant.moon, morphVariantTransition.moon),
+        animate(raysRoot, raysVariant.hidden),
+        animate(rays, rayVariant.hidden, rayVariantTransition.hidden)
+      )
+    } else {
+      this.running.push(
+        animate(shine, shineVariant.hidden),
+        animate(morph, morphVariant.sun, morphVariantTransition.sun),
+        animate(raysRoot, raysVariantVisible, raysVariantVisibleTransition),
+        animate(rays, rayVariant.visible, rayVariantTransition.visible)
+      )
+    }
+  }
+  private toggle = async() => {
+    const dark = getCurrentTheme() === 'dark'
+    const next = dark ? 'light' : 'dark'
+    console.log('toggling theme to', next)
+    this.running.forEach((a) => {a.stop()})
+    this.running = []
+    this.animateIcon(!dark)
+    if ('startViewTransition' in document) {
+      const t = document.startViewTransition(() => setStarlightTheme(next))
+      await t.ready
+      this.animateClipPath()
+    } else {
+      setStarlightTheme(next)
+    }
+  }   
+  /**
+   *  Animates a circular clip-path from the center of the button to cover the entire viewport, creating a reveal effect for the new theme.
+   */
+  private animateClipPath = () => {
+    const btn = this.querySelector('button')!;
+    const { top, left, width, height } = btn.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const r = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    );
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${r}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 600,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      },
+    );
+  }
+}
+customElements.define('theme-toggle', ThemeToggle);
+// import "../theme-toggle"
+</script>
+
+
+

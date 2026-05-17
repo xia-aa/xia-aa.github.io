@@ -141,15 +141,15 @@ export default defineConfig({
             link: '/reports/docs-stats',
             items: ['reports/docs-stats'],
           },
-                    {
+          {
             label: 'me',
-            link: '/me/',
+            link: '/me',
           }
         ], {
-          exclude: ['404', 'index'],
+          // exclude: ['/404', '/index', '/me'],
         }),
         // starlightLinksValidator(),
-        starlightUiTweaks(),
+        // starlightUiTweaks(),
         starlightCatppuccin({
           dark: { flavor: "macchiato", accent: "lavender" },
           light: { flavor: "latte", accent: "lavender" },
@@ -160,8 +160,9 @@ export default defineConfig({
       favicon: '/favicon.ico',
       components: {
         PageFrame: './src/components/overrides/PageFrame.astro',
+        Hero: './src/components/overrides/Hero.astro',
+        ThemeSelect: './src/components/overrides/ThemeSelect.astro',
         // Head: '#/components/Head.astro',
-
       },
       customCss: [
         // Path to your Tailwind base styles:

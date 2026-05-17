@@ -1,0 +1,29 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+import type { StarlightIcon } from '@astrojs/starlight/types';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Omit<HTMLAttributes<'a'>, 'href'> {
+	href: string | URL;
+	icon?: StarlightIcon | undefined;
+	iconPlacement?: 'start' | 'end' | undefined;
+	variant?: 'primary' | 'secondary' | 'minimal';
+}
+const {
+	class: className,
+	icon,
+	iconPlacement = 'end',
+	variant = 'primary',
+	...attrs
+} = Astro.props;
+const linkButtonVariants = {
+    primary: 'bg-pink-blue-animated text-primary-foreground',
+    secondary: '',
+    minimal: '',
+} as const;
+---
+<a  class:list={['not-content inline-flex items-center gap-2 rounded-full px-5 py-3.75 h-14 text-base  ', linkButtonVariants[variant],  className]} {...attrs}>
+	{icon && iconPlacement === 'start' && <Icon name={icon} size="1.5rem" />}
+	<slot />
+	{icon && iconPlacement === 'end' && <Icon name={icon} size="1.5rem" />}
+</a>
