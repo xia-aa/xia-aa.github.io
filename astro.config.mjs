@@ -176,7 +176,19 @@ export default defineConfig({
         // Path to your Tailwind base styles:
         './src/styles/global.css',
       ],
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }, {
+        icon: 'email',
+        label: 'Email',
+        href: 'mailto:1276552337@qq.com'
+      }, {
+        icon: 'discord',
+        label: 'Discord',
+        href: 'https://discord.gg/HteSse7r'
+      }, {
+        icon: 'x.com',
+        label: 'X.com',
+        href: 'https://x.com/aaNahida190631'
+      }, ],
       editLink: {
         baseUrl: 'https://github.com/xia-aa/xia-aa.github.io/edit/main/',
       },

@@ -2,15 +2,18 @@
 import Default from '@astrojs/starlight/components/PageFrame.astro';
 import { BackToTop } from '../app/BackToTop';
 import BgP from '../app/bg/BgP.astro';
+import Giscus from '../Giscus.astro';
 ---
 
 <script>
 	import '../../pwa'
 </script>
 
-<Default><slot />
+<Default>
+<slot />
 <slot name="header" slot="header" />
 <slot name="sidebar" slot="sidebar" />
 </Default>
+<Giscus />
 <BgP />
-<BackToTop client:only="solid"  />
+<BackToTop client:only="solid" />

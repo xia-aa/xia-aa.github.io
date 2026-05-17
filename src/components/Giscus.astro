@@ -1,0 +1,62 @@
+<div id="giscus" class="not-content print:hidden">
+	<div class="giscus"></div>
+</div>
+
+<script is:inline>
+	(function () {
+		const THEME_KEY = 'starlight-theme';
+		const themeMap = {
+			light: 'catppuccin_latte',
+			dark: 'catppuccin_macchiato',
+		};
+
+		function giscusTheme() {
+			const stored = localStorage.getItem(THEME_KEY);
+			if (stored === 'dark' || stored === 'light') return themeMap[stored];
+			const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+			return prefersDark ? themeMap.dark : themeMap.light;
+		}
+
+		function loadGiscus() {
+			if (document.querySelector('script[src*="giscus"]')) return;
+			console.log('Loading Giscus...', giscusTheme());
+		
+			const script = document.createElement('script');
+			script.src = 'https://giscus.app/client.js';
+			script.setAttribute('data-repo', 'xia-aa/xia-aa.github.io');
+			script.setAttribute('data-repo-id', 'R_kgDOSOC1Yw');
+			script.setAttribute('data-category', 'General');
+			script.setAttribute('data-category-id', '');
+			script.setAttribute('data-mapping', 'pathname');
+			script.setAttribute('data-strict', '0');
+			script.setAttribute('data-reactions-enabled', '1');
+			script.setAttribute('data-emit-metadata', '0');
+			script.setAttribute('data-input-position', 'bottom');
+			script.setAttribute('data-theme', giscusTheme());
+			script.setAttribute('data-lang', 'zh-CN');
+			script.setAttribute('crossorigin', 'anonymous');
+			script.async = true;
+			document.body.appendChild(script);
+		}
+
+		function updateGiscusTheme() {
+			const iframe = document.querySelector('iframe.giscus-frame');
+			if (!iframe) return;
+			iframe.contentWindow?.postMessage(
+				{ giscus: { setConfig: { theme: giscusTheme() } } },
+				'https://giscus.app'
+			);
+		}
+
+		document.addEventListener('astro:after-swap', () => {
+			loadGiscus();
+			updateGiscusTheme();
+		});
+
+		// 监听主题变化
+		const observer = new MutationObserver(() => updateGiscusTheme());
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+		loadGiscus();
+	})();
+</script>
