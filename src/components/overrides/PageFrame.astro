@@ -1,5 +1,6 @@
 ---
 import Default from '@astrojs/starlight/components/PageFrame.astro';
+import { BackToTop } from '../app/BackToTop';
 import BgP from '../app/bg/BgP.astro';
 ---
 
@@ -8,3 +9,4 @@ import BgP from '../app/bg/BgP.astro';
 <slot name="sidebar" slot="sidebar" />
 </Default>
 <BgP />
+<BackToTop client:only="solid"  />

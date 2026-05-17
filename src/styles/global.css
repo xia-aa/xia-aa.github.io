@@ -5,10 +5,9 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import 'starlight-ui-tweaks/styles';
 
-@custom-variant dark (&:is(.dark, [data-theme="dark"]) *);
+@custom-variant dark (&:is(.dark, [data-theme='dark']) *);
 
 :root {
-	--ctp-lavender: hsl(232deg, 97%, 85%);
 	--ctp-text: hsl(234deg, 16%, 35%);
 	--ctp-overlay2: hsl(232deg, 10%, 53%);
 	--ctp-base: hsl(64, 53%, 94%);
@@ -17,14 +16,26 @@
 	--muted-foreground: oklch(0.552 0.016 285.938);
 	--muted: oklch(0.967 0.001 286.375);
 	--accent: oklch(0.967 0.001 286.375);
-	--primary: var(--ctp-lavender);
+
 	--primary-foreground: var(--ctp-base);
-	--background: hsl(64, 53%, 94%);
+
 	--radius: 0.625rem;
+}
+.light,
+[data-theme='light'] {
+	--ctp-lavender: hsl(232, 90%, 80%);
+	--ctp-base: hsl(64, 53%, 94%);
+	--ctp-mantle: hsl(70, 53%, 93%);
+	--background: var(--ctp-base);
+	--primary: var(--ctp-lavender);
+	--sl-color-bg-nav: var(--ctp-mantle);
+	--sl-color-black: var(--ctp-mantle);
+	--sl-color-gray-6: hsl(70, 27%, 96%);
+	--sl-color-text-accent: var(--ctp-lavender);
 }
 .dark,
 [data-theme='dark'] {
-	--ctp-lavender: hsl(232deg, 97%, 85%);
+	--ctp-lavender: hsl(232, 98%, 84%);
 	--ctp-text: hsl(226deg 64% 88%); /* text, card-foreground */
 	--ctp-overlay2: hsl(228deg, 20%, 65%);
 	--ctp-overlay1: hsl(230deg, 13%, 55%); /* muted-foreground */
