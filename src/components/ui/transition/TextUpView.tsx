@@ -25,7 +25,7 @@ export function TextUpView(props: {
 				y: [10, 0],
 			},
 			{
-				type: 'spring',
+				type: 'spring', // tween（默认）：固定的 duration + easing，像机械运动 模拟物理弹簧——基于 stiffness（刚度）、damping（阻尼）、mass（质量）计算运动轨迹，会有自然弹性效果
 				stiffness: 300,
 				damping: 20,
 				duration: 0.1,

@@ -15,28 +15,7 @@ export default defineConfig({
 
   site: 'https://xia-aa.github.io',
   integrations: [
-    solidJs({ devtools: true }),
-    AstroPWA({
-      registerType: 'autoUpdate',
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2}'],
-        navigateFallback: '/404',
-      },
-      manifest: {
-        name: 'xaa docs',
-        short_name: 'xaa',
-        description: 'a some docs',
-        start_url: '/',
-        display: 'standalone',
-        background_color: '#f5f0e6',
-        theme_color: '#f5f0e6',
-        icons: [
-          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-          { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
-        ],
-      },
-    }),
+
     starlight({
       // 为此网站设置英语为默认语言。
       defaultLocale: 'zh-cn',
@@ -202,6 +181,28 @@ export default defineConfig({
         baseUrl: 'https://github.com/xia-aa/xia-aa.github.io/edit/main/',
       },
       lastUpdated: true,
+    }),
+        solidJs({ devtools: true }),
+    AstroPWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2}'],
+        navigateFallback: '/404',
+      },
+      manifest: {
+        name: 'xaa docs',
+        short_name: 'xaa',
+        description: 'a some docs',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#f5f0e6',
+        theme_color: '#f5f0e6',
+        icons: [
+          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+      },
     }),
   ],
 
