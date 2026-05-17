@@ -9,12 +9,34 @@ import starlightSidebarTopics from 'starlight-sidebar-topics'
 import starlightGitHubAlerts from 'starlight-github-alerts';
 import starlightFullViewMode from 'starlight-fullview-mode'
 import solidJs from '@astrojs/solid-js';
+import AstroPWA from '@vite-pwa/astro';
 // https://astro.build/config
 export default defineConfig({
 
   site: 'https://xia-aa.github.io',
   integrations: [
     solidJs({ devtools: true }),
+    AstroPWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2}'],
+        navigateFallback: '/404',
+      },
+      manifest: {
+        name: 'xaa docs',
+        short_name: 'xaa',
+        description: 'a some docs',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#f5f0e6',
+        theme_color: '#f5f0e6',
+        icons: [
+          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+      },
+    }),
     starlight({
       // 为此网站设置英语为默认语言。
       defaultLocale: 'zh-cn',
@@ -158,6 +180,13 @@ export default defineConfig({
 
       title: "xaa",
       favicon: '/favicon.ico',
+      head: [
+        { tag: 'link', attrs: { rel: 'manifest', href: '/manifest.webmanifest' } },
+        { tag: 'meta', attrs: { name: 'theme-color', content: '#f5f0e6' } },
+        { tag: 'meta', attrs: { name: 'apple-mobile-web-app-capable', content: 'yes' } },
+        { tag: 'meta', attrs: { name: 'apple-mobile-web-app-status-bar-style', content: 'default' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/icon-192.png' } },
+      ],
       components: {
         PageFrame: './src/components/overrides/PageFrame.astro',
         Hero: './src/components/overrides/Hero.astro',

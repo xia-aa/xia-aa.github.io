@@ -4,6 +4,10 @@ import { BackToTop } from '../app/BackToTop';
 import BgP from '../app/bg/BgP.astro';
 ---
 
+<script>
+	import '../../pwa'
+</script>
+
 <Default><slot />
 <slot name="header" slot="header" />
 <slot name="sidebar" slot="sidebar" />
