@@ -142,6 +142,13 @@ export default defineConfig({
               'me',
               'readme'
             ]
+          },
+          {
+            label: 'demo',
+            link: '/demo/globe',
+            items: [
+              'demo/globe',
+            ]
           }
         ], ),
         // starlightLinksValidator(),
@@ -174,7 +181,7 @@ export default defineConfig({
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/xia-aa' }, {
         icon: 'email',
         label: 'Email',
-        href: 'mailto:1276552337@qq.com'
+        href: 'mailto:3584401237@qq.com'
       }, {
         icon: 'discord',
         label: 'Discord',

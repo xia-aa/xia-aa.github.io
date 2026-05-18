@@ -23,6 +23,7 @@
     "@catppuccin/starlight": "^2.0.1",
     "@tailwindcss/vite": "^4.2.4",
     "@tanstack/solid-query": "^5.100.10",
+    "@types/three": "^0.184.1",
     "astro": "^6.1.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -37,6 +38,8 @@
     "starlight-ui-tweaks": "^0.2.2",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.2.4",
+    "three": "^0.184.0",
+    "three-globe": "^2.45.2",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
