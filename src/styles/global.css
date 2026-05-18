@@ -76,14 +76,14 @@ body {
 	@apply bg-background text-foreground leading-[1.2];
 }
 
-/* .sl-markdown-content :is(img):not(:where(.not-content *)) {
+.sl-markdown-content :is(img):not(:where(.not-content *)) {
 	display: inline-flex;
 	width: attr(width px);
 }
 img[height] {
 	width: attr(width px);
-	height: attr(height px); 
-} */
+	height: attr(height px);
+}
 
 /* Animation */
 

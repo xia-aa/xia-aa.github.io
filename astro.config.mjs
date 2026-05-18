@@ -12,10 +12,9 @@ import solidJs from '@astrojs/solid-js';
 import AstroPWA from '@vite-pwa/astro';
 // https://astro.build/config
 export default defineConfig({
-
   site: 'https://xia-aa.github.io',
+  trailingSlash: 'never',
   integrations: [
-
     starlight({
       // 为此网站设置英语为默认语言。
       defaultLocale: 'zh-cn',
@@ -132,12 +131,6 @@ export default defineConfig({
             },],
           },
           {
-            label: 'Reference',
-            link: '/reference/example',
-            icon: 'information',
-            items: ['reference/example'],
-          },
-          {
             label: 'Stats',
             link: '/reports/docs-stats',
             items: ['reports/docs-stats'],
@@ -145,10 +138,12 @@ export default defineConfig({
           {
             label: 'me',
             link: '/me',
+            items: [
+              'me',
+              'readme'
+            ]
           }
-        ], {
-          // exclude: ['/404', '/index', '/me'],
-        }),
+        ], ),
         // starlightLinksValidator(),
         // starlightUiTweaks(),
         starlightCatppuccin({
