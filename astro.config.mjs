@@ -10,10 +10,12 @@ import starlightGitHubAlerts from 'starlight-github-alerts';
 import starlightFullViewMode from 'starlight-fullview-mode'
 import solidJs from '@astrojs/solid-js';
 import AstroPWA from '@vite-pwa/astro';
+import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://xia-aa.github.io',
-  trailingSlash: 'never',
+  // trailingSlash: 'never',
+
   integrations: [
     starlight({
       // 为此网站设置英语为默认语言。
@@ -167,6 +169,17 @@ export default defineConfig({
         { tag: 'meta', attrs: { name: 'apple-mobile-web-app-capable', content: 'yes' } },
         { tag: 'meta', attrs: { name: 'apple-mobile-web-app-status-bar-style', content: 'default' } },
         { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/icon-192.png' } },
+        {
+          tag: 'script',
+          attrs: {
+            // <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6587057475152413"
+        //  crossorigin="anonymous"></script>
+            src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6587057475152413',
+            'data-site': 'MY-FATHOM-ID',
+            async: true,
+            crossorigin: 'anonymous',
+          },
+        },
       ],
       components: {
         PageFrame: './src/components/overrides/PageFrame.astro',
@@ -196,7 +209,7 @@ export default defineConfig({
       },
       lastUpdated: true,
     }),
-        solidJs({ devtools: true }),
+    solidJs({ devtools: true }),
     AstroPWA({
       registerType: 'autoUpdate',
       workbox: {
@@ -222,5 +235,12 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['starlight-sidebar-topics'] // 强制排除，避免虚拟模块解析失败
+    }
   },
+
+  adapter: cloudflare({
+  imageService: 'compile'
+}),
 });

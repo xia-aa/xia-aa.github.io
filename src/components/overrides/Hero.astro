@@ -1,54 +1,91 @@
 ---
-import { Image } from 'astro:assets';
-import Default from '@astrojs/starlight/components/Hero.astro';
-import { buttonVariants } from '#/components/base/button.tsx';
-import { cn } from '#/components/lib/utils.ts';
-import LinkButton from '../ui/LinkButton.astro';
-import { TextUpView } from '../ui/transition/TextUpView';
+import { Image } from "astro:assets";
+import Default from "@astrojs/starlight/components/Hero.astro";
+import { buttonVariants } from "#/components/base/button.tsx";
+import { cn } from "#/components/lib/utils.ts";
+import LinkButton from "../ui/LinkButton.astro";
+import { TextUpView } from "../ui/transition/TextUpView";
 
 const { data } = Astro.locals.starlightRoute.entry;
 const { title = data.title, tagline, image, actions = [] } = data.hero || {};
 
 const imageAttrs = {
-	loading: 'eager' as const,
-	decoding: 'async' as const,
-	width: 400,
-	height: 400,
-	alt: image?.alt || '',
+  loading: "eager" as const,
+  decoding: "async" as const,
+  width: 400,
+  height: 400,
+  alt: image?.alt || "",
 };
 let darkImage: ImageMetadata | undefined;
 let lightImage: ImageMetadata | undefined;
 let rawHtml: string | undefined;
 if (image) {
-	if ('file' in image) {
-		darkImage = image.file;
-	} else if ('dark' in image) {
-		darkImage = image.dark;
-		lightImage = image.light;
-	} else {
-		rawHtml = image.html;
-	}
+  if ("file" in image) {
+    darkImage = image.file;
+  } else if ("dark" in image) {
+    darkImage = image.dark;
+    lightImage = image.light;
+  } else {
+    rawHtml = image.html;
+  }
 }
 ---
-<div class="not-content grid grid-cols-1 gap-4 pb-4 items-center md:grid-cols-[7fr_4fr] md:gap-[3%] md:py-[clamp(2.5rem,calc(1rem+10vmin),10rem)] px-20">
-  {darkImage && <Image src={darkImage} {...imageAttrs} class='md:order-2 md:w-[min(100%,25rem)]' />}
-  {lightImage && <Image src={lightImage} {...imageAttrs} class='md:order-2 md:w-[min(100%,25rem)]' />}
+
+<div
+  class="not-content grid grid-cols-1 gap-4 pb-4 items-center md:grid-cols-[7fr_4fr] md:gap-[3%] md:py-[clamp(2.5rem,calc(1rem+10vmin),10rem)] px-20"
+>
+  {
+    darkImage && (
+      <img src={darkImage.src} {...imageAttrs} class="md:order-2 min-w-100" />
+    )
+  }
+  {
+    lightImage && (
+      <img src={lightImage.src} {...imageAttrs} class="md:order-2 min-w-100]" />
+    )
+  }
   <div class="flex flex-col gap-8">
     <div class="flex flex-col gap-4">
-      <h1  data-page-title set:html={title} class="text-[64px]! font-semibold gradient" />
-      {tagline && <TextUpView class="text-xl text-ctp-overlay2" text={tagline}  client:load ></TextUpView>}
-    </div>
-    {actions.length > 0 && (
-    <div class="">
-        {actions.map(({ attrs: { class: className, ...attrs } = {}, icon, link: href, text, variant }) => (
-
-            <LinkButton {href} {variant} icon={icon?.name} class:list={[className]} {...attrs}>
-              {text}
-            {icon?.html && <Fragment set:html={icon.html} />}
-            </LinkButton>
+      <h1
+        data-page-title
+        set:html={title}
+        class="text-[64px]! font-semibold gradient"
+      />
+      {
+        tagline && (
+          <TextUpView
+            class="text-xl text-ctp-overlay2"
+            text={tagline}
+            client:load
+          />
         )
-        )}
+      }
     </div>
-    )}
+    {
+      actions.length > 0 && (
+        <div class="">
+          {actions.map(
+            ({
+              attrs: { class: className, ...attrs } = {},
+              icon,
+              link: href,
+              text,
+              variant,
+            }) => (
+              <LinkButton
+                {href}
+                {variant}
+                icon={icon?.name}
+                class:list={[className]}
+                {...attrs}
+              >
+                {text}
+                {icon?.html && <Fragment set:html={icon.html} />}
+              </LinkButton>
+            ),
+          )}
+        </div>
+      )
+    }
   </div>
 </div>

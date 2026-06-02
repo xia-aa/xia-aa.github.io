@@ -13,18 +13,22 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "astro-check": "astro check"
+    "astro-check": "astro check",
+    "generate-types": "wrangler types",
+    "cf:preview": "bun astro build && bun wrangler dev",
+    "deploy": "bun run build && bun wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.6.0",
     "@astrojs/mdx": "^5.0.4",
     "@astrojs/solid-js": "^6.0.1",
     "@astrojs/starlight": "^0.38.4",
     "@astrojs/starlight-tailwind": "^5.0.0",
     "@catppuccin/starlight": "^2.0.1",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.0",
     "@tanstack/solid-query": "^5.100.10",
     "@types/three": "^0.184.1",
-    "astro": "^6.1.9",
+    "astro": "^6.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "motion": "^12.38.0",
@@ -37,10 +41,11 @@
     "starlight-sidebar-topics": "^0.7.1",
     "starlight-ui-tweaks": "^0.2.2",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.2.4",
+    "tailwindcss": "^4.3.0",
     "three": "^0.184.0",
     "three-globe": "^2.45.2",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.96.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
@@ -50,5 +55,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "overrides": {
+    "vite": "^7"
+  }
 }
